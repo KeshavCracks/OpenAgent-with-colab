@@ -1,0 +1,32 @@
+name: lifecycle-spec-plan-build-ship
+version: "0.1.0"
+summary: >
+  Full spec -> plan -> build -> test -> review -> ship lifecycle with
+  personas, quality gates, security review, testing discipline, and
+  verification evidence, adapted from addyosmani/agent-skills.
+triggers:
+  - "spec plan build ship"
+  - "feature lifecycle"
+  - "new feature"
+  - "implement and ship"
+  - "quality gate"
+  - "security review"
+  - "pull request workflow"
+required_tools: [read, glob, grep, patch, shell, todo, memory]
+required_permissions: [fs:read, fs:write, shell:exec]
+source:
+  repo: https://github.com/addyosmani/agent-skills
+  pinned_revision: "9d0c60d406b454a78ccc0a175b19932047aa4dac"
+license: MIT
+context_budget_tokens: 900
+lifecycle: [spec, plan, build, test, review, ship]
+quality_gates:
+  - "tests pass locally within the shell tool's timeout budget"
+  - "patch-based diff applies cleanly (no corruption, all hunks verified)"
+  - "security review checklist completed for any auth/input/secret-handling change"
+  - "verification evidence attached to the trajectory (command output, not just a claim)"
+verification_procedure:
+  - "Re-run the project's test command via the shell tool and attach stdout/stderr to the trajectory."
+  - "Diff the final patch against the plan's stated scope; flag any out-of-scope changes."
+  - "Run openagent security secret-scan and openagent security dep-audit before ship."
+body_file: SKILL.md

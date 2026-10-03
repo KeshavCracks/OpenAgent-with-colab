@@ -1,0 +1,30 @@
+name: agent-reach-research
+version: "0.1.0"
+summary: >
+  Lawful public browsing/search/RSS/GitHub/YouTube-transcript research via
+  Agent-Reach, with channel status checks ("doctor") and no bypass of
+  logins/paywalls/anti-bot controls.
+triggers:
+  - "search the web"
+  - "rss feed"
+  - "github repo research"
+  - "youtube transcript"
+  - "documentation lookup"
+  - "agent-reach"
+  - "doctor"
+  - "channel status"
+required_tools: []
+required_permissions: [network:outbound_public_api]
+source:
+  repo: https://github.com/Panniantong/agent-reach
+  pinned_revision: "a19a171fa980a0785849596492e0af4db800c82f"
+license: MIT
+context_budget_tokens: 500
+verification_procedure:
+  - "openagent research doctor reports each channel as available/unavailable before use"
+  - "login-gated platforms show unavailable unless a user-owned session/cookie/integration is configured"
+harness_policy: >
+  Never bypass logins, paywalls, API restrictions, CAPTCHAs, anti-bot
+  controls, copyright controls, or platform access rules. Mark a channel
+  unavailable rather than working around its restrictions.
+body_file: SKILL.md
