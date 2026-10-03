@@ -1,0 +1,54 @@
+## --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+## --- OpenAgent runtime state (never commit secrets / weights / local state) ---
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.token
+secrets/
+credentials/
+.openagent/
+workspace/
+.openagent_todo.json
+sessions/*.jsonl
+trajectories/*.jsonl
+memory/*.sqlite3
+memory/*.db
+models_cache/
+model_weights/
+*.gguf
+*.safetensors
+*.bin
+*.ckpt
+
+## Cookies / auth state captured by research or browser modules
+*.cookies.json
+*_cookiejar.json
+browser_profile/
+
+## --- Node (web UI, if built) ---
+node_modules/
+.next/
+out/
+
+## --- OS / editor ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
