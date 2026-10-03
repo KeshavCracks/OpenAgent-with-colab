@@ -36,8 +36,16 @@ _SECRET_LOOKALIKE_PATTERNS = [
     re.compile(r"-----BEGIN [A-Z ]*PRIVATE KEY-----"),
 ]
 
-REPO_ROOT = Path(__file__).resolve().parent.parent
-DEFAULT_CONFIG_PATH = REPO_ROOT / "config" / "default.yaml"
+PACKAGE_ROOT = Path(__file__).resolve().parent
+REPO_ROOT = PACKAGE_ROOT.parent
+_PACKAGED_CONFIG_PATH = PACKAGE_ROOT / "config_default.yaml"
+_REPO_CONFIG_PATH = REPO_ROOT / "config" / "default.yaml"
+# Source checkouts keep the human-facing path (a symlink) for compatibility.
+# A wheel cannot contain that repo-root path, so installed packages use the
+# copy shipped inside the openagent package instead.
+DEFAULT_CONFIG_PATH = (
+    _REPO_CONFIG_PATH if _REPO_CONFIG_PATH.is_file() else _PACKAGED_CONFIG_PATH
+)
 USER_CONFIG_PATH = Path(os.environ.get(
     "OPENAGENT_CONFIG", str(Path.home() / ".config" / "openagent" / "config.yaml")
 ))
